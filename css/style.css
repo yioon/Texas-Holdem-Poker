@@ -1,0 +1,612 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+.main-container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.offset, .interface {
+	float: left;
+	display: inline-block;
+	width: 240px;
+	height: 240px;
+}
+
+.player-seat {
+	float: left;
+	display: inline-block;
+	width: 190px;
+	height: 190px;
+	position: relative;
+	
+	background-color: #d8c875;
+	border: 3px solid black;
+	border-radius: 6px;
+	box-sizing: border-box;
+	padding: 8px 8px 8px 8px;
+	margin: 25px 25px 25px 25px;
+}
+
+.player-name, .player-tokens {
+	display: inline-block;
+	width: calc(50% - 3px);
+	height: 16px;
+	box-sizing: border-box;
+}
+.player-tokens {
+	text-align: right;
+}
+
+.center-table-container {
+	float: left;
+	display: inline-block;
+	position: relative;
+	width: 720px;
+	height: 240px;
+	
+	background: rgba(109,204,30,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(109,204,30,1) 0%, rgba(71,120,44,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(109,204,30,1)), color-stop(100%, rgba(71,120,44,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(109,204,30,1) 0%, rgba(71,120,44,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(109,204,30,1) 0%, rgba(71,120,44,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(109,204,30,1) 0%, rgba(71,120,44,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(109,204,30,1) 0%, rgba(71,120,44,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6dcc1e', endColorstr='#47782c', GradientType=1 );
+	
+	border: 5px solid #662e20;
+	border-radius: 50px;
+	box-sizing: border-box;
+	padding: 15px 15px 15px 15px;
+}
+.center-table-container h4{
+	font-size: 16px;
+	margin: 0px 0px 5px 15px;
+	font-weight: normal;
+	color: rgba(255,255,255,0.9);
+	text-shadow: 2px 2px rgba(0,0,0,0.5);;
+}
+
+.pot-container {
+	display: inline-block;
+	width: 100%;
+	height: 35px;
+	position: relative;
+	pointer-events: none;
+}
+.pot-tokens-container {
+	height: 0px;
+	text-align: center;
+	box-sizing: border-box;
+	position: relative;
+}
+
+
+.bid-show {
+	text-align: center;
+}
+
+.options-window {
+	display: none;
+	position: fixed;
+	top: 50px;
+	left: calc(50% - 160px);
+	width: 320px;
+	
+	font-size: 16px;
+	background-color: white;
+	border: 1px black solid;
+	box-sizing: border-box;
+	z-index: 3;
+	
+	-webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+}
+.options-window .left-column, .options-window .right-column {
+	display: inline-block;
+	height: 30px;
+	box-sizing: border-box;
+	vertical-align: top;
+	line-height: 30px;
+	padding-left: 5px;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+.options-window .left-column {
+	width: 60%;
+	border-right: 1px solid rgba(0,0,0,0.25);
+}
+.options-window .right-column {
+	position: relative;
+	width: 40%;
+}
+.options-window .label {
+	display: inline-block;
+	width: 100%;
+	height: 20px;
+	color: white;
+	background-color: rgba(180, 130, 60, 1);
+	text-align: center;
+	line-height: 20px;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+.options-window .difficulty-select {
+	height: 26px;
+	margin-top: 2px;
+	width: calc(100% - 10px);
+}
+.options-window #tokens-change, .options-window #bb-change {
+	height: 26px;
+	margin-top: 2px;
+	width: calc(100% - 50px);
+}
+.options-window #godmode-checkbox, .options-window #sound-checkbox, .options-window #enable-bb-increase-checkbox  {
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	margin-top: 5px;
+	left: calc(50% - 10px);
+}
+.options-window #ai-speed, .options-window #new-round-delay, .options-window #bb-increase-time {
+	width: 80px;
+	height: 20px;
+	margin-top: 5px;
+}
+
+
+.interface {
+	position: relative;
+	width: 240px;
+	height: 240px;
+}
+.button-columns-container {
+	display: flex;
+	flex-direction: column;
+}
+.button-columns-container .left-column, .button-columns-container .middle-column, .button-columns-container .right-column {
+	flex: 1;
+}
+
+.button-columns-container .right-column {
+	min-height: 60px;
+	position: relative;
+}
+.interface .pass-button, .interface .check-button, .interface .bid-button {
+	margin: 2px;
+	width: calc(100% - 4px);
+	height: 24px;
+}
+.interface .add-bb-button {
+	margin: 2px;
+	width: 40px;
+	height: 24px;
+}
+.interface .options-button {
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	width: 70px;
+	height: 24px;
+}
+.interface .save-options-button {
+	height: 30px;
+	width: calc(100% - 160px);
+	margin-left: 80px;
+}
+.interface #bid-value {
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(100% - 50px);
+}
+
+.interface .player-hand {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+.log-display {
+	display: inline-block;
+	width: 100%;
+	min-height: 60px;
+	padding-left: 10px;
+	font-size: 14px;
+	min-height: 100px;
+	height: calc(100vh - 720px);
+	
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	box-sizing: border-box;
+	
+	overflow-y: scroll;
+}
+
+.card {
+	display: inline-block;
+	width: 80px;
+	height: 100px;
+	margin-bottom: 2px;
+	-webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+	z-index: 1;
+}
+.player-cards-container {
+	display: block;
+	height: 100px;
+}
+.player-cards-container .card:first-of-type {
+	margin-right: 2px;
+}
+.card-faded {
+	opacity: 0.5;
+	z-index: 0;
+}
+
+
+.center-table-cards .card {
+	margin-top: 27px;
+	margin-left: 2px;
+}
+.center-table-cards .card:first-of-type {
+	margin-left: 45px;
+}
+
+
+@media (max-width: 1199px) and (min-width: 950px) {
+	.main-container {
+		width: 950px;
+	}
+	.center-table-container{
+		width: 570px;
+		height: 190px;
+	}
+	.center-table-cards .card:first-of-type {
+		margin-left: 23px;
+	}
+	.player-seat, .offset, .interface {
+		width: 190px;
+		height: 190px;
+		margin: 0px 0px 0px 0px;
+	}
+	.log-display {
+		min-height: 100px;
+		height: calc(100vh - 570px);
+	}
+}
+
+@media (max-width: 949px) and (min-width: 760px) {
+	.main-container {
+		width: 100%;
+	}
+	.center-table-container {
+		width: calc(100% - 380px);
+		height: 190px;
+	}
+	.center-table-cards .card:first-of-type {
+		margin-left: 23px;
+	}
+	.player-seat, .offset, .interface {
+		width: 190px;
+		height: 190px;
+		margin: 0px 0px 0px 0px;
+	}
+	.offset-dynamic-1 {
+		width: calc(100% - 760px);
+	}
+	.log-display {
+		min-height: 100px;
+		height: 200px;
+	}
+}
+@media (max-width: 866px){
+	.center-table-cards .card {
+		position: absolute;
+		margin-left: 0px !important;
+	}
+	.center-table-cards .card:nth-of-type(1) {
+		left: 38px;
+	}
+	.center-table-cards .card:nth-of-type(2) {
+		left: calc(38px + ((100% - 80px - 76px) / 4) * 1);
+	}
+	.center-table-cards .card:nth-of-type(3) {
+		left: calc(38px + ((100% - 80px - 76px) / 4) * 2);
+	}
+	.center-table-cards .card:nth-of-type(4) {
+		left: calc(38px + ((100% - 80px - 76px)  / 4) * 3);
+	}
+	.center-table-cards .card:nth-of-type(5) {
+		left: calc(38px + ((100% - 80px - 76px)  / 4) * 4);
+	}
+
+}
+
+@media (max-width: 759px) and (min-width: 600px) {
+	.main-container {
+		width: 100%;
+	}
+	.center-table-container {
+		width: calc(100% - 380px);
+		height: 190px;
+	}
+	.player-seat, .offset, .interface  {
+		width: 190px;
+		height: 190px;
+		margin: 0px 0px 0px 0px;
+	}
+	.offset-dynamic-1 {
+		width: 0px;
+	}
+	.offset-dynamic-2 {
+		width: calc((100% - 380px)/2);
+	}
+	.interface {
+		width: calc((100% - 380px)/2);
+	}
+	.log-display {
+		min-height: 100px;
+		height: calc(100vh - 570px);
+	}
+}
+
+@media (max-width: 599px) {
+	.main-container {
+		width: 100%;
+	}
+	
+	.player-seat {
+		margin: 0;
+		width: 33.33%;
+		height: 170px;
+		padding: 5px 5px 5px 5px;
+	}
+	.player-seat .card {
+		position: absolute;
+		margin-left: 0px !important;
+	}
+	.player-seat .tokens-container {
+		position: absolute !important;
+		bottom: 5px;
+	}
+	
+	.player-seat .card:nth-of-type(1) {
+		left: 5px;
+	}
+	.player-seat .card:nth-of-type(2) {
+		left: calc(100% - 85px);
+	}
+	
+	.card:hover {
+		z-index: 2;
+	}
+	
+	.center-table-container {
+		width: 100%;
+		height: calc(100vh - 500px);
+		min-height: 130px;
+		max-height: 190px;
+		border-radius: 30px;
+		padding-right: 5px;
+	}
+	.pot-container {
+		height: calc(50% - 45px);
+	}
+	.pot-tokens-container {
+		text-align: right;
+		top: calc(50% - 20px);
+	}
+	.offset-dynamic-2, .offset-dynamic-1 {
+		display: none;
+	}
+	.player-status {
+		display: none;
+	}
+	
+	.interface {
+		width: 100%;
+		min-height: 100px;
+		font-size: 18px;
+		height: auto;
+	}
+	.interface .button-columns-container {
+		flex-direction: row;
+	}
+	.button-columns-container .left-column, .button-columns-container .middle-column, .button-columns-container.right-column {
+		height: 100px;
+	}
+	.button-columns-container .middle-column {
+		order: 3;
+	}
+	.interface .pass-button, .interface .check-button, .interface .bid-button {
+		margin: 2px;
+		width: calc(100% - 4px);
+		height: 46px;
+	}
+	.interface .add-bb-button {
+		margin: 2px;
+		width: 46px;
+		height: 46px;
+	}
+	.interface .options-button {
+		left: calc(50% - 40px);
+		bottom: 5px;
+		width: 80px;
+		height: 30px;
+	}
+
+	.interface #bid-value {
+		width: calc(100% - 60px);
+	}
+	.options-window {
+		top: 5px;
+	}
+
+	.log-display {
+		height: calc(100vh - 630px);
+	}
+	.interface .player-hand {
+		padding: 5px 0px 5px 0px;
+	}
+
+	
+	.center-table-cards .card:nth-of-type(1) {
+		left: 20px;
+	}
+	.center-table-cards .card:nth-of-type(2) {
+		left: calc(20px + ((100% - 80px - 40px - 100px) / 4) * 1);
+	}
+	.center-table-cards .card:nth-of-type(3) {
+		left: calc(20px + ((100% - 80px - 40px - 100px) / 4) * 2);
+	}
+	.center-table-cards .card:nth-of-type(4) {
+		left: calc(20px + ((100% - 80px - 40px - 100px)  / 4) * 3);
+	}
+	.center-table-cards .card:nth-of-type(5) {
+		left: calc(20px + ((100% - 80px - 40px - 100px)  / 4) * 4);
+	}
+	
+	
+}
+/* CARDS SPRITE */
+.cards-10-of-clubs, .cards-10-of-diamonds, .cards-10-of-hearts, .cards-10-of-spades, .cards-2-of-clubs, 
+.cards-2-of-diamonds, .cards-2-of-hearts, .cards-2-of-spades, .cards-3-of-clubs, .cards-3-of-diamonds, 
+.cards-3-of-hearts, .cards-3-of-spades, .cards-4-of-clubs, .cards-4-of-diamonds, .cards-4-of-hearts, 
+.cards-4-of-spades, .cards-5-of-clubs, .cards-5-of-diamonds, .cards-5-of-hearts, .cards-5-of-spades, 
+.cards-6-of-clubs, .cards-6-of-diamonds, .cards-6-of-hearts, .cards-6-of-spades, .cards-7-of-clubs, 
+.cards-7-of-diamonds, .cards-7-of-hearts, .cards-7-of-spades, .cards-8-of-clubs, .cards-8-of-diamonds, 
+.cards-8-of-hearts, .cards-8-of-spades, .cards-9-of-clubs, .cards-9-of-diamonds, .cards-9-of-hearts, 
+.cards-9-of-spades, .cards-ace-of-clubs, .cards-ace-of-diamonds, .cards-ace-of-hearts, .cards-ace-of-spades, 
+.cards-card-back, .cards-jack-of-clubs, .cards-jack-of-diamonds, .cards-jack-of-hearts, .cards-jack-of-spades, 
+.cards-king-of-clubs, .cards-king-of-diamonds, .cards-king-of-hearts, .cards-king-of-spades, .cards-queen-of-clubs, 
+.cards-queen-of-diamonds, .cards-queen-of-hearts, .cards-queen-of-spades
+{ display: inline-block; background: url('cards-sprite.png') no-repeat; overflow: visible; text-indent: -9999px; text-align: left; background-size: cover; }
+ 
+.cards-10-of-clubs { background-position: -0px -0px;}
+.cards-10-of-diamonds { background-position: -80px -0px;  }
+.cards-10-of-hearts { background-position: -160px -0px;  }
+.cards-10-of-spades { background-position: -240px -0px;}
+.cards-2-of-clubs { background-position: -320px -0px;}
+.cards-2-of-diamonds { background-position: -400px -0px;}
+.cards-2-of-hearts { background-position: -480px -0px;}
+.cards-2-of-spades { background-position: -560px -0px;}
+.cards-3-of-clubs { background-position: -640px -0px;}
+.cards-3-of-diamonds { background-position: -720px -0px;}
+.cards-3-of-hearts { background-position: -800px -0px;}
+.cards-3-of-spades { background-position: -880px -0px;}
+.cards-4-of-clubs { background-position: -960px -0px;}
+.cards-4-of-diamonds { background-position: -1040px -0px;}
+.cards-4-of-hearts { background-position: -1120px -0px;}
+.cards-4-of-spades { background-position: -1200px -0px;}
+.cards-5-of-clubs { background-position: -1280px -0px;}
+.cards-5-of-diamonds { background-position: -1360px -0px;}
+.cards-5-of-hearts { background-position: -1440px -0px;}
+.cards-5-of-spades { background-position: -1520px -0px;}
+.cards-6-of-clubs { background-position: -1600px -0px;}
+.cards-6-of-diamonds { background-position: -1680px -0px;}
+.cards-6-of-hearts { background-position: -1760px -0px;}
+.cards-6-of-spades { background-position: -1840px -0px;}
+.cards-7-of-clubs { background-position: -1920px -0px;}
+.cards-7-of-diamonds { background-position: -2000px -0px;}
+.cards-7-of-hearts { background-position: -2080px -0px;}
+.cards-7-of-spades { background-position: -2160px -0px;}
+.cards-8-of-clubs { background-position: -2240px -0px;}
+.cards-8-of-diamonds { background-position: -2320px -0px;}
+.cards-8-of-hearts { background-position: -2400px -0px;}
+.cards-8-of-spades { background-position: -2480px -0px;}
+.cards-9-of-clubs { background-position: -2560px -0px;}
+.cards-9-of-diamonds { background-position: -2640px -0px;}
+.cards-9-of-hearts { background-position: -2720px -0px;}
+.cards-9-of-spades { background-position: -2800px -0px;}
+.cards-ace-of-clubs { background-position: -2880px -0px;}
+.cards-ace-of-diamonds { background-position: -2960px -0px;}
+.cards-ace-of-hearts { background-position: -3040px -0px;}
+.cards-ace-of-spades { background-position: -3120px -0px;}
+.cards-jack-of-clubs { background-position: -3200px -0px;}
+.cards-jack-of-diamonds { background-position: -3280px -0px;}
+.cards-jack-of-hearts { background-position: -3360px -0px;}
+.cards-jack-of-spades { background-position: -3440px -0px;}
+.cards-king-of-clubs { background-position: -3520px -0px;}
+.cards-king-of-diamonds { background-position: -3600px -0px;}
+.cards-king-of-hearts { background-position: -3680px -0px;}
+.cards-king-of-spades { background-position: -3760px -0px;}
+.cards-queen-of-clubs { background-position: -3840px -0px;}
+.cards-queen-of-diamonds { background-position: -3920px -0px;}
+.cards-queen-of-hearts { background-position: -4000px -0px;}
+.cards-queen-of-spades{ background-position: -4080px -0px;}
+.cards-card-back{ background-position: -4160px -0px;}
+
+
+/* TOKENS SPRITES */
+.token {
+	display: inline-block;
+	background: url('tokens-sprite.png') no-repeat;
+	overflow: visible;
+	text-indent: -9999px;
+	text-align: left; 
+	position: absolute;
+	background-size: cover;
+	width: 33px;
+	height: 22px;
+	vertical-align: bottom;
+}
+
+.token-dealer { background-position: -0px -0px; }
+.token-sb { background-position: -33px -0px; }
+.token-bb { background-position: -67px -0px; }
+.token-1 { background-position: -100px -0px; }
+.token-5 { background-position: -135px -0px; }
+.token-10 { background-position: -168px -0px; }
+.token-25 { background-position: -202px -0px; }
+.token-100 { background-position: -236px -0px; } 
+.token-500 { background-position: -269px -0px; }
+.token-1000 { background-position: -303px -0px; }
+
+.token-dealer, .token-sb, .token-bb {
+	bottom: 0;
+	right: 0;
+}
+
+.tokens-container {
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+	height: 22px;
+	padding-top: 10px;
+	z-index: 3;
+}
+.pot-tokens-container .tokens-container {
+	padding-top: 0px;
+}
+
+.tokens-container-popup {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 40px;
+	
+	background-color: rgba(255,255,255,0.8);
+	text-align: center;
+	font-size: 18px;
+	border: 1px solid black;
+	border-radius: 10px;
+	cursor: default;
+}
+
+.tokens-stack {
+	text-align: left;
+	pointer-events: none;
+	position: relative;
+	display: inline-block;
+	width: 32px;
+	height: auto;
+	margin-right: 2px;
+}
+
+
+

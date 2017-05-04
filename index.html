@@ -1,0 +1,151 @@
+<head>	
+ 	<title>Poker</title>
+ 	<meta name="author" content="Bartosz Chrząszczak">
+ 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" >
+	
+	<link rel="icon" type="image/png" href="favicon.png">
+	 
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<audio id="bid-sound" src="audio/bidSound.wav" preload="auto"></audio>
+<audio id="wait-sound" src="audio/waitSound.wav" preload="auto"></audio>
+	
+<div class="main-container">
+	<div class="game-area-container">
+		<div class="top-table">
+			<div class="offset offset-dynamic-2"></div>
+			<div class="player-seat" id="player0">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"><div class='token token-dealer'></div></div>
+			</div>
+			<div class="offset offset-dynamic-1"></div>
+			<div class="player-seat" id="player1">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"><div class='token token-sb'></div></div>
+			</div>
+			<div class="offset offset-dynamic-2"></div>
+		</div>
+		<div class="middle-table">
+			<div class="player-seat" id="player5">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"></div>
+			</div>
+			<div class="center-table-container">
+				<div class="pot-tokens-container"></div>
+				<div class="center-table-cards"></div>
+			</div>
+			<div class="player-seat" id="player2">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"><div class='token token-bb'></div></div>
+			</div>
+		</div>
+		<div class="bottom-table">
+			<div class="offset offset-dynamic-2"></div>
+			<div class="player-seat" id="player4">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"></div>
+			</div>
+			<div class="offset offset-dynamic-1"></div>
+			<div class="player-seat" id="player3">
+				<span class="player-name"></span>
+				<span class="player-tokens"></span>
+				<div class="player-cards-container"></div>
+				<div class="player-status"></div>
+				<div class="player-bid"></div>
+				<div class="player-special-chip"></div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="interface">
+		<div class="button-columns-container">
+			<div class="left-column">
+				<button class="check-button">Call/Check</button>
+				<button class="pass-button">Fold</button>
+			</div>
+			
+			<div class="middle-column">
+				<button class="bid-button">Bet</button>
+				<button class="add-bb-button">+20</button>
+				<input id="bid-value" type="range" min ="20" max="1000" step ="20" value ="20">
+			</div>
+
+			<div class="right-column">
+				<span class="player-hand"></span>
+				<button class="options-button">Options</button>
+			</div>
+		</div>
+		<div class="options-window">
+			<div class="label">AI Settings
+			</div><div class="left-column">AI Difficulty:
+			</div><div class="right-column">  
+			<select name="difficulty-select" class="difficulty-select">
+				<option value="checking">Checking</option>
+				<option value="easy">Easy</option>
+				<option value="normal" selected>Normal</option>
+			</select>
+			</div>
+			
+			<div class="left-column">AI decision speed (ms):
+			</div><div class="right-column"><input id="ai-speed" type="range" min ="20" max="2000" step ="20" value ="20"><span class="ai-speed-value"></span></div>
+			
+			<div class="label">Other Settings:
+			</div><div class="left-column">New round delay (ms):
+			</div><div class="right-column"><input id="new-round-delay" type="range" min ="20" max="5000" step ="20" value ="20"><span class="new-round-delay-value"></span></div>
+				
+			<div class="left-column">Show everyone's cards:
+			</div><div class="right-column"><input id="godmode-checkbox" type="checkbox" name="godmode"></div>
+			
+			<div class="left-column">Enable sound:
+			</div><div class="right-column"><input id="sound-checkbox" type="checkbox" name="enable-sound"></div>
+			
+			<div class="left-column">Set everyone's tokens:
+			</div><div class="right-column"><input id="tokens-change" type="number" min="100" max="100000" step="100" value="1000" name="tokens-change"><button id="tokens-change-button">Set</button> </div>
+			
+			<div class="left-column">Set Big Blind value: 
+			</div><div class="right-column"><input id="bb-change" type="number" min="10" max="1000" step="10" value="20" name="bb-change"><button id="bb-change-button">Set</button> </div>
+			
+			<div class="left-column">Enable BB increase:
+			</div><div class="right-column"><input id="enable-bb-increase-checkbox" type="checkbox" name="enable-bb-increase"></div>
+			
+			<div class="left-column">BB increase time (min):
+			</div><div class="right-column"><input id="bb-increase-time" type="range" min ="1" max="20" step ="1" value ="5"><span class="bb-increase-time-value"> 5</span></div>
+			
+			<button class="save-options-button">Save and close</button>
+		</div>		
+	</div>
+	<div class="log-display"> </div>
+
+
+</div>
+	
+</body>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/hand-checker.js"></script>
+<script src="js/main.js"></script>
